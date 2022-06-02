@@ -15,3 +15,7 @@ import ExoVIf from "./components/ExoVIf.vue";
     <!-- <ExoVFor /> -->
     <ExoVIf />
 </template>
+
+<style>
+  @import 'bootstrap/dist/css/bootstrap.min.css';
+</style>
