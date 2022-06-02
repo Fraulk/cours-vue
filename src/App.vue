@@ -4,7 +4,8 @@ import * as jose from 'jose'
 
 const counter = ref(0)
 const claim = ref("")
-const decodedJwt = localStorage.getItem("jwt") || ref("")
+const decodedJwt = ref(JSON.parse(localStorage.getItem("jwt")) || "")
+const error = ref(false)
 
 setInterval(() => {
   counter.value++
@@ -13,7 +14,12 @@ setInterval(() => {
 const resetCounter = () => {counter.value = 0}
 
 const claimJwt = (token) => {
-  decodedJwt.value = jose.decodeJwt(token)
+  try {
+    decodedJwt.value = jose.decodeJwt(token)
+  } catch (error) {
+    // console.log(error)
+    console.log("oopsie jwt is most likely invalid")
+  }
 }
 
 const saveLocally = () => {
